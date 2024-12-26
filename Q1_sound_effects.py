@@ -1,6 +1,5 @@
 
-# submitter: kfir mutzary gridi
-#ID:206397770
+
 
 import pygame
 
