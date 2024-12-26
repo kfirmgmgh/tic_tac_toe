@@ -43,4 +43,4 @@ Open a Pull Request
 
 Contact
 Email: kfirmg64@gmail.com
-Project Link: https://github.com/kfirmgmgh/tic-tac-toe
+Project Link: [https://github.com/kfirmgmgh/tic-tac-toe](https://github.com/kfirmgmgh/tic_tac_toe/tree/main)
