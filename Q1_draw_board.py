@@ -1,5 +1,4 @@
-# submitter: kfir mutzary gridi
-#ID:206397770
+
 import turtle
 import Q1_draw_shapes
 
