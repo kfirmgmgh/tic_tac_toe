@@ -1,5 +1,4 @@
-# submitter: kfir mutzary gridi
-#ID:206397770
+
 import Q1_draw_shapes
 
 def check_state_game(game_state, board):
