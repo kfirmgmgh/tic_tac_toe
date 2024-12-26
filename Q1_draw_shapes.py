@@ -1,5 +1,4 @@
-# submitter: kfir mutzary gridi
-#ID:206397770
+
 # Function to draw a circle at a specified position on the board
 def draw_circle(x, y, board, radius=55):
     board.hideturtle()  # Hide the turtle cursor for aesthetic purposes
