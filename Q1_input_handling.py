@@ -1,7 +1,9 @@
-
+# submitter: kfir mutzary gridi
+#ID:206397770
 import turtle
 import Q1_messages
 import Q1_check_game_state
+import random
 def get_player_input(player):
     # Collect row and column input from the player using graphical input pop-ups
 
@@ -48,37 +50,41 @@ def check_if_can_win(game_state,board,player):
 def find_blocking_move(game_state, player):
     n = 3 # Game grid size
     opponent = 'X' if player == 'O' else 'O' # Determine the opponent's symbol
+    # Two-dimensional array to store potential blocking moves
+    should_block_moves=[]
     # Check each row, column, and diagonal for a potential blocking move
     for i in range(n):
         if game_state[i][0] == opponent and game_state[i][1] == opponent and game_state[i][2] is None:
-            return i, 2
+            should_block_moves.append([i,2])
         if game_state[i][0] == opponent and game_state[i][2] == opponent and game_state[i][1] is None:
-            return i, 1
+           should_block_moves.append([i,1])
         if game_state[i][1] == opponent and game_state[i][2] == opponent and game_state[i][0] is None:
-            return i, 0
+            should_block_moves.append([i,0])
 
     for j in range(n):
         if game_state[0][j] == opponent and game_state[1][j] == opponent and game_state[2][j] is None:
-            return 2, j
+            should_block_moves.append([2,j])
         if game_state[0][j] == opponent and game_state[2][j] == opponent and game_state[1][j] is None:
-            return 1, j
+            should_block_moves.append([1,j])
         if game_state[1][j] == opponent and game_state[2][j] == opponent and game_state[0][j] is None:
-            return 0, j
+            should_block_moves.append([0,j])
 
     if game_state[0][0] == opponent and game_state[1][1] == opponent and game_state[2][2] is None:
-            return 2, 2
+            should_block_moves.append([2,2])
     if game_state[0][0] == opponent and game_state[2][2] == opponent and game_state[1][1] is None:
-            return 1, 1
+        should_block_moves.append([1, 1])
     if game_state[1][1] == opponent and game_state[2][2] == opponent and game_state[0][0] is None:
-            return 0, 0
+            should_block_moves.append([0,0])
 
     if game_state[0][2] == opponent and game_state[1][1] == opponent and game_state[2][0] is None:
-            return 2, 0
+            should_block_moves.append([2,0])
     if game_state[0][2] == opponent and game_state[2][0] == opponent and game_state[1][1] is None:
-            return 1, 1
+            should_block_moves.append([1,1])
     if game_state[1][1] == opponent and game_state[2][0] == opponent and game_state[0][2] is None:
-            return 0, 2
-
+            should_block_moves.append([0,2])
+    # Randomly decide whether to block or not
+    if should_block_moves and random.random()>0.60:
+        return random.choice(should_block_moves)
     return None
 
 
