@@ -82,7 +82,7 @@ def find_blocking_move(game_state, player):
     if game_state[1][1] == opponent and game_state[2][0] == opponent and game_state[0][2] is None:
             should_block_moves.append([0,2])
     # Randomly decide whether to block or not
-    if should_block_moves and random.random()>0.50:
+    if should_block_moves and random.random()>0.40:
         return random.choice(should_block_moves)
     return None
 
