@@ -6,11 +6,11 @@ import random
 def get_player_input(player):
     # Collect row and column input from the player using graphical input pop-ups
 
-        x = turtle.numinput("Player " + str(player), "Enter your row (0, 1, 2): ", minval=0, maxval=2)
-        y = turtle.numinput("Player " + str(player), "Enter your column (0, 1, 2): ", minval=0, maxval=2)
+        x = turtle.numinput("Player " + str(player), "Enter your row (1, 2, 3): ", minval=1, maxval=3)
+        y = turtle.numinput("Player " + str(player), "Enter your column (1, 2, 3): ", minval=1, maxval=3)
     # Validate that the inputs are not None and are integers, then return them as integers
         if x is not None and y is not None and x.is_integer() and y.is_integer():
-            return int(x), int(y)
+            return int(x-1), int(y-1)
         else:
             # Display an error message if the inputs are invalid
             Q1_messages.display_invalid_number_input_message()
