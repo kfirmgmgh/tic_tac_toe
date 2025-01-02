@@ -3,6 +3,23 @@ import turtle
 import Q1_messages
 import Q1_check_game_state
 import random
+VALUE_LEVEL=0.2
+def select_game_level():
+    level = turtle.numinput("Game Difficulty",
+                            "Choose a level:\n1 for Easy\n2 for Normal\n3 for Hard\n4 for Impossible",
+                            minval=1, maxval=4)
+    if level is not None and level.is_integer():
+        if level==1:
+            return VALUE_LEVEL*level
+        elif level==2:
+            return VALUE_LEVEL*level
+        elif level==3:
+            return VALUE_LEVEL*level
+        else:
+            return VALUE_LEVEL*level
+
+    else:
+        Q1_messages.display_invalid_number_input_message()
 def get_player_input(player):
     # Collect row and column input from the player using graphical input pop-ups
 
@@ -14,7 +31,7 @@ def get_player_input(player):
         else:
             # Display an error message if the inputs are invalid
             Q1_messages.display_invalid_number_input_message()
-def computer_move(game_state,board,player):
+def computer_move(game_state,board,player,level):
     # Assign 'O' as the computer's symbol
     computer='O'
     # Check if there is a winning move available for the computer
@@ -22,7 +39,7 @@ def computer_move(game_state,board,player):
     if win_move:
         return win_move
     # Check if there is a move that can block the opponent from winning
-    block_move=find_blocking_move(game_state,player)
+    block_move=find_blocking_move(game_state,player,level)
     if block_move:
         return block_move
     # List of moves with priority; center and corners have higher priority
@@ -46,7 +63,7 @@ def check_if_can_win(game_state,board,player):
                     return i, j
                 game_state[i][j] = None
     return None
-def find_blocking_move(game_state, player):
+def find_blocking_move(game_state, player,level):
     n = 3 # Game grid size
     opponent = 'X' if player == 'O' else 'O' # Determine the opponent's symbol
     # Two-dimensional array to store potential blocking moves
@@ -82,14 +99,14 @@ def find_blocking_move(game_state, player):
     if game_state[1][1] == opponent and game_state[2][0] == opponent and game_state[0][2] is None:
             should_block_moves.append([0,2])
     # Randomly decide whether to block or not
-    if should_block_moves and random.random()>0.40:
+    if should_block_moves and random.random()>level:
         return random.choice(should_block_moves)
     return None
 
 
 def choosing_game_mode():
     # Request the user to choose the game mode with a numerical input pop-up
-    mode = turtle.numinput("Please choose Game Mode", 'Enter 1 for Player VS Player,2 for Player VS Computer',minval=1,maxval=2)
+    mode = turtle.numinput("Game Mode", 'Enter game mode:\n1 for Player VS Player\n2 for Player VS Computer',minval=1,maxval=2)
     # Validate the input and default to mode 1 if the input is invalid
     if mode.is_integer() and mode == 2 and mode is not None:
         return int(mode)
