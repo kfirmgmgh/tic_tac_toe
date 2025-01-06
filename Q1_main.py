@@ -1,4 +1,3 @@
-
 import turtle
 import Q1_draw_board
 import Q1_check_game_state
@@ -15,7 +14,8 @@ def main():
 
     # Choosing the game mode (player vs player or player vs computer)
     mode = Q1_input_handling.choosing_game_mode()
-
+    if mode==2:
+     level=Q1_input_handling.select_game_level()
     # Create a turtle object to draw the game board
     board = turtle.Turtle()
     Q1_draw_board.draw_board(board)
@@ -43,7 +43,7 @@ def main():
         while not move_made:
             if mode == 2 and player == 'O':
                 # Handle computer's move for 'O' in 2-player mode
-                x, y = Q1_input_handling.computer_move(game_state, board, player)
+                x, y = Q1_input_handling.computer_move(game_state, board, player,level)
                 game_state[x][y] = player
                 move_made = True
             else:
