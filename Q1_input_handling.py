@@ -1,22 +1,22 @@
-
 import turtle
 import Q1_messages
 import Q1_check_game_state
 import random
-VALUE_LEVEL=0.2
+VALUE_LEVEL=0.8
+VALUE_LEVEL_ADJ=0.08
 def select_game_level():
     level = turtle.numinput("Game Difficulty",
                             "Choose a level:\n1 for Easy\n2 for Normal\n3 for Hard\n4 for Impossible",
                             minval=1, maxval=4)
     if level is not None and level.is_integer():
         if level==1:
-            return VALUE_LEVEL*level
+            return float(VALUE_LEVEL/int(level))
         elif level==2:
-            return VALUE_LEVEL*level
+            return float(VALUE_LEVEL/int(level))+float(VALUE_LEVEL_ADJ)
         elif level==3:
-            return VALUE_LEVEL*level
+            return float(VALUE_LEVEL/int(level))+float(VALUE_LEVEL_ADJ)
         else:
-            return VALUE_LEVEL*level
+            return float(VALUE_LEVEL/int(level))
 
     else:
         Q1_messages.display_invalid_number_input_message()
